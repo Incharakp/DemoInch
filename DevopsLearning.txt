@@ -1,0 +1,657 @@
+Agile - frequent releases. flexible to customer needs.
+Devops - often go in hand in hand with agile
+
+To avoid issues with Dev and Ops team
+
+Build automation - Devoloper centric. 
+		 - Helps in code deployment. Independent of IDE. 
+		 - 
+		 -Adv -  fast and avoid manual errors, repeatable, consistancy, portable & reliable
+ - Jenkins, Maven, 
+
+
+
+Continues Integration - Freequently merging code. We can achive this continues automation. exp: gitlab, 			jenkins, teamCity, Bamboo. 
+continues deplyoment - freequently deploying small code changes to production 
+Continues Delivery   - Regardless of the decision made by aprover, code will be always in the stage of deployable. Process to keep that always in the stage of deployable. 
+
+Monitoring / Presentation
+
+Cloud and Devops relationship
+Devops - culture and collabaration between dev and ops team.
+ Devops can happen inside r outside the cloud. cloud services built upon devops.
+
+IAAS - Base infrastructure is provided by someone else(OS). exp: amazon, microsoft, google. (EC2 servcie), ansible
+PAAS - we r resposible for managing only our application and data. exp: Google app engine.
+SAAS - start using application on browser. everything is managed by cloud. gmail, office 365
+FAAS - serverless. no need to worry abt underlying code. just need to manage our code. amazon aws lamda, azure funtions, google cloud funtion.
+
+Virtualization - 
+managing resources by creating virtual layer on top our physical machine. makes use of hypervisor concept. creates virtual resources on top of actual pysical hardware. 
+Hypervisor is a program which runs on bare physical machine which allows us to manage vm run on physical machine. 
+
+contains OS+ virtual versions of hardware
+
+containerization - 
+light weight. isolated package. 
+require very less resources. 
+containes only what required to run application.
+used much few resourses.
+
+orchestration and containerization go hand in hand. 
+
+exp: Docker
+
+Orchestration- manage resource, scaleup, scaledown based on requirement. autoscale based on usage. 
+		creare self healing system. to replace automatically the un healthy node. 
+exp : Docker Swarm, Kubernetes, zookeeper, Terraform(configuration management tool). 
+
+
+Ansible - configuration management tool. 
+Used Yaml. Yet another markup language. 
+Ansible dosnt require centralized server, it has ansible tower which works as centralised server.
+It dosnt require agents.
+
+Puppet - configuration management tool.
+
+Chef - procedurale configuration.
+agent server model.
+domain specific language.
+
+SaltSTACK - another CMT.
+declarative language.
+YAMLE based files for configuration.
+
+Cloud advantages: cost effective, agility, stop guessing capacity.
+
+200+ services are available. 
+
+Event driven architecture
+Security
+IAM- Identity access management
+
+basic services: 
+EC2 - elastic compute cloud
+EBS
+ECS
+
+
+auto scaling
+load balance
+
+Need of regions and zone: when one data center goes down/crash, if we have another data center at another region it will resolve this issue. 
+
+region - 
+availablity zone - each region has multiple availability zones. upto 6. heigh availability, fault tollarance. exp: region: us-east-1
+			availability zone: us-east-1a us-east-1b 
+
+AMI - Amazon machine image. it indicates what OS and what software u want on the instance. 
+
+Instance type- instance family - optimized combination of compute - cpu , gpu, memory, disk(storage) and networking for specific workloads. 
+
+Security group - Virtual firewall to control incoming and outgoing traffic to/from AWS resource. provides additional layer of security.
+
+By default - it will have deny. no inbound and outbound is allowed.
+if we add any rules, we can allow traffic rules.
+
+Elastic IP - to provide constant IP to EC2.
+
+The systemctl command manages both system and service configurations, enabling administrators to manage the OS and control the status of services. Further, systemctl is useful for troubleshooting and basic performance tuning.
+
+afetr creating instance:
+
+sudo su -
+yum update -y
+yum install httpd
+systemctl start httpd
+systemctl enable httpd
+echo "content" > /var/www/html/index.html
+
+we can access this in browser with public ip address.
+
+_____________________________________________________
+IAAS- Infrastructure as a service. use only infrastructure provided by the cloud provider(virtual or on dedicated hardware , data storage, networking featutres). 
+
+cloud provider is reponsible only for physical infrastructure - hardware/networking, virtualization layer(Hypervisor/Host OS).
+
+Customer is responsible for OS updates and patches. Application code, runtime, Avalability, scalability, fault tollerance. 
+exp : using EC2 to deploy our application.
+
+PAAS: uses platform provided by cloud. 
+Cloud provider is responsible for: OS(upgrades, patches) application run time, autoscaling, availability, load balancing. 
+
+Customer is responsible only for application code. app config.
+
+Elastic load balancer - Distribute incoming traffic across multiple targets. 
+Distribute traffic across EC2 instances in one or more availability zones in a single region.
+
+Its a managed service - PAAS. Ensures that heighly available. Health check - only when service is healthy/ up and running. 
+
+3 types of load balancers:
+-------------------------------
+classic - oldest type. not recomended.
+Application - Most popular and most likely used. supports http/https. supports advanced routing(request responce). layer 7 - application layer.
+network - when there is a requirement for heigh performance. exp : gaming aplication.
+spports: TCP/TLS, UDP. layer 4 - Network layer.  
+
+Gateway Load Balancer (used to Deploy, scale, and run third-party virtual appliances).
+
+
+Application load balancer: balance load between servers. we can create load balancer and then attach instances(as target group - we can add as many instances). attach security group(inbound outbound rules to allow and avoid traffic).
+_____________________________________________________________________________-
+Availability of EC2 instances: 
+are the applications available when the users need them?
+represented in percentage. 
+exp: 99.99% availability - four 9's availability.
+
+How to achieve:
+To achieve this, deploy Ec2 instances in multiple ailability zones to balance the load(Same region or multiple regions).
+
+Scalability: ability to handle sudden growth of data traffic/users/data size without any drop in performance.
+
+Vertical scalling: Deplyoing application/db to larger instance: faster CPU, Larger hard drive, More RAM/CPU/network capabilities.
+
+but it is limited. exp: t2micro to t2small while creating EC2 instance.
+
+Horizontal scalling: Deplyoing multiple instances. 
+Horizontal scalling is preffered over vertical scaling. bcs vertical scalling is expensive.
+and vertical scalling has its own limits. horizontal scalling increases availability.
+But it needs additional infrastructure. with load balancer we can achieve this.
+autoscale: auto scalling group.
+distributed load.
+
+Shared tenancy: By default Tenancy option will be shared. If we have any specific requirement then only we can choose dedicated Tenancy. Dedicated one is costly compared to shared. 
+
+Shared: Single host machine can have instances from multiple customers.
+
+Ec2 dedicated instances: 
+Virtualized instances on hardware dedicated to one customer. 
+Will not have visibility to hardware of underlying hosts.
+
+Ec2 dedicated hosts: Physical servers dedicated to single customer.
+will have visibility to hardware of underlying hosts,
+
+Pricing models: 
+
+ondemand : ---spiky workloads,flexible but expensive
+request when u want it
+use and throw
+highest cost highest flexibility
+ideal for : web apps which recieves spiky traffic
+program that cannot be interepted.
+
+spot : ---cost sensitive, cheapest, fault tolerant(we can stop and start it back), Non immidiate workloads.
+quote the max price
+quote max price. prices decided by long term trends.
+can terminate at any time.
+Ideal for non critical workloads. and can tollarant intrruptions.
+
+Its just a request. if prices dosnt fit, we will not get instance. 
+
+reserved: -- constant workloads that run all the time
+reserve ahed of time
+
+pricing models:
+
+no upfront : 0 upfront. monthly installment
+partial upfront : $xyz partial payment
+All upfront: full amount upfront. $0 montly installment
+
+cost wise: earlier u pay, more discount. 
+
+savings plan: --constant workloads that run all the time
+commit spending some perticular amount for an hour
+
+compute savings plan: - ec2 instance, aws forgate, aws lambda.
+we need to commit - I would spend some amount for 1 or 3 year period.
+we have flexibility to change family, tenancy/aws region/ we can switch bwt ec2/forgate/lamda
+
+
+Instance Savings plan: - we need to commit saying, I would spend certain amount for certain period period for a specific family within a specific region.
+
+__________________________________________________________
+Elastic beanstalk
+
+when we want to build a simple web application, we can use Elastic bean stalk.
+no need to pay anything for EBS, but for resources.
+
+next level of platform as a servcie.
+simple way to deploy.
+no usage charges
+automatic load balancing, auto scaling
+managed platform updates
+application health monitoring
+
+
+Aplication - container for environment, version and configs.
+Application Version - Specific version of deployable code
+Env - app version deployed to aws resources.can have multiple version of applications.
+
+
+EC2 instances
+target groups
+load balancers
+
+Dynamic scalling policies:
+Target tracking policy - Modify current capacity based on target value: exp: cpu utilization capacity we can set
+simple scalling - normally used one, where it sets some threshold value, once it reaches that it will scale up r down instances
+step scalling - 
+
+Serverless:
+It dosnt mean no server in background servers will be running. But no need to worry about server infrastructure.
+mainly we can concentrate only on application code. 
+flexibility of scalling.
+pay for use.
+
+
+Most popular serverless service - AWS Lambda
+- with this, we no need to worry about server, scalability, availability just need to worry about our code.
+- Pay for what we use. for no of requests, duration of requests, memory consumed.
+
+other compute services:
+lightsail
+aws batch
+
+AWS cloud9 - provides IDE for writing code that can be accessed form any browser.
+
+AWS cloudshell - we can access AWS services via command prompt without setting it up on local machine. we can easily accssed on browser.
+Browser based shell. pre authonticated with aws credentials.
+includes set of pre installed tools.
+
+AWS amplify - it can be used when we want to build and deploy a mobile applications with authentication and API capabilities.
+
+amazon codecatalist - It includes end to end development.
+Simplifies process of setting up and running app. plan devolop and deploy.
+
+AWS code artifact- we can even store share deploy our code easily. centralized repository to store and manage our code.
+
+Elasticity
+
+The ability to acquire resources as you need and release when they are no longer needed is termed as Elasticity of the Cloud. With cloud computing, you don’t have to over-provision resources upfront to handle peak levels of business activity in the future.
+
+Reliability - Refers to the ability of a system to recover from infrastructure or service disruptions, by dynamically acquiring computing resources to meet demand, and mitigate disruptions.
+
+Durability - Refers to the ability of a system to assure data is stored and data remains consistently on the system as long as it is not changed by legitimate access, i.e. data should not get corrupt or disappear from the cloud because of a system malfunction.
+
+Resiliency - Describes the ability of a system to recover from a failure induced by the load (data or network), attacks, and failures (hardware, software, or network failures).
+
+Continues Integration - continuesly running ur tests and packaging
+Continues Deploymenet - Continuesly deplyoing to env
+Cont Delivery - Cont Deploy to prod.
+
+______________________________________________________
+Amazon S3 - Simple Storage Service
+
+*Most popular, inexpensive, very flexible storage.
+*Object storage
+*stores large objects using key value approch.
+*Provides unlimited storage.
+
+Provides 99.99% availability and durability.
+data replicated in single region across multiple availability zone.
+can store all file types.
+
+Amazon S3 is global service. not associated with any region.
+but bucket we created is asssosiated with region.	
+Objects stored in bucket. Bucket names should be globally unique.
+
+Each object is identified by key value pair.
+Key is unique in bucket.
+we can store unlimited objects but max object size is 5tb.
+
+Storage class:
+
+Standard : Frequently accssed data
+Standard-IA : Infrequently accssed data - like backup for disaster recovery.
+one zone-IA: Infrequently accessed,long lived, non critical data which will be stored only in one zone. - ex: thumbnails for images - which can be recreated.
+zxdfv
+Intelligent tiering -Long lived data with changing r unknown access patterns.
+Glacier - Archived data - retrival time varies from min to hours.
+Glacier Deep Archive -  Archive data that rarely, if ever needes to be accessed - retrival time varies btw hours.
+
+except one zone - IA - all other class have min 3 availablity zones.
+
+Glacier and Glacier IA are cheaper compared to others.
+Standerd IA is cheaper compared to Standard.
+encryption is mandatory for glacier and glacier ia.
+
+Pricing:
+-Cost of storage
+-retrival charge
+-cost for transfer
+-Monthly titing (Intelligent tiring)
+
+free of cost:
+data transfer to amazon S3
+from amazon s3 to amazon cloud front
+from s3 to services in same region
+
+-------------------
+Shared Responsibility Model:
+
+AWS: Responsible for security of the cloud- responsible for infrastructure, os and platform.
+aws operates, manages and controls components from the host OS and virtualization layer down to the physical security.
+
+Customer: Responsible for security in the cloud : 
+responsible for guest os/any other application sw installed by us.
+right users with right access
+Configure security groups or firewall
+Responsible for OS/network/data
+Encryptiption of data
+
+EC2 instance - Infrastructure as a Service
+
+
+- managing access to services - configure right permissions - IAM user/role/policies
+-managing db users
+- configuring right security groups
+
+Complience:
+COmplience responsibilities will be shared
+aws - IT infrastructure and security standards
+
+shared control:
+patch management
+config management
+awareness and training
+____________________________________________________
+IAM - Identity access management
+authentication - is it the right user
+authorization - is the user has right access
+
+Federated user: externally authenticated users.
+
+we can connect to aws s3 user using access key. we can create under IAM user. but it is not a good practice as it will store the complete credentials in the prompt.
+enter below command. it wil ask for access id and key. after that we can access s3 details.
+aws configure
+aws s3 ls
+
+IAM user - user created in aws account - with credentials
+IAM group - collection of IAM users
+IAM role - IAM identities. will expire after time period. 
+		no credentials attached to it. 
+policy - permission
+		aws managed
+		customer managed
+		Inline policies
+
+policy - JSON file with one r more permissions. 
+
+Effect- Allow/deny
+Action - action allowed on resource
+Resource- instance
+condition - any restrictions on timeline/ Ip add
+
+1. What is AWS?
+Amazon web services - cloud service provider. It allows its user to choose products from its vast varity of services and use them ondemand. 
+
+2. What is IAM and its purpose?
+Identity access management - Service provided by aws for user management. we can create and manage users, policy, groups. 
+It helps to ensure that right user has right access to access resources. 
+ 
+3. What are policies in IAM?
+Policies are the permissions that we can attach to users to access right services based on requirement.
+
+Managed policy : It can be reused and can be attached to multiple entities. AWS provides a lot of managed policies by default. even customer can also create their own.
+
+Inline policy : It is like custom policy, cannot be reused. these can be applied directly to IAM entities. cannot be attached to multiple users.
+
+5. Two types of access for IAM user?
+	1. Programatic access : when we want to access services in command line
+	2. AWS management console access : AWS web application that consumes AWS cloud backend services in order to manage actual infrastructure cloud resources.
+
+6. What is EC2 service used for?
+It helps to launch as many virtual servers as we want, configure security and networking and manage storage.
+
+7. Name few types of EC2 instances?
+
+
+8. Diff between T2 series and C series on Ec2 instances?
+
+9. What are AMI’s?
+Amazon machine Image- helps to choose OS and software to be present on instance. 
+
+10. What is diff between inbound and outbound rules in SG? 
+In AWS, security groups control traffic to or from an EC2 instance according to a set of inbound and outbound rules
+1. Inbound rules control the incoming traffic to your instance, while outbound rules control the outgoing traffic from your instance
+2. Inbound rules are used to allow traffic from a single IP address to access the instance, while outbound rules are used to allow all traffic to leave the instance.
+3. To add inbound rules, you need to specify the port number, while to add outbound rules, you need to connect to the internet or any browser.
+
+
+Support plans:
+Basic : Free. AWS trusted adviser - 7 core checks. 24/7 access to customer service and forums. 
+
+
+Developer: Paid . 7 core checks. Business hours support. we can have unlimited cases. but only 1 primary contact.
+
+Business: Paid. all checks. 24/7 phone, email, chat support. unlimited cases can be opened. unlimited contacts. 
+
+Enterprise: Paid. all checks. will get support team, designated technical account manager. support same as business, but it is costly. 
+
+services:
+
+Amazon connect: Cloud based call center service
+
+Amazon simple email service: Cloud based email sending service.
+
+Amazon AppStream: 	
+allow acess to specific desktop apps throgh browser without installing them on their indivisual system.
+
+AWS launch wizard
+AWS resource access manager
+
+Infrastructure as a code:
+cloud formation
+
+helps to automate the entire infrastructure and configuration in a automated way.
+so that we can avoid manual error.  
+
+VPC, Subnet
+Elastic load balancer, security group, 5 ec2 instances, RDS database
+
+____________________________
+
+3 basic types of cloud services
+1. Computing - EC2, elastic beanstack, auto scalling, lamda
+2. Storage - S3, elastic block storage, Elastic file system
+3. Networking - VPC, Route53, Amazon cloudFront
+
+Auto scalling - is a functionallity which allow us to launch new instances whenever there is a demand. It allow us to automatically increase r decrease resource capacity based on demand.
+
+Region -  Its a seperate geografic area
+Availability Zone - isolated areas/locations that are present inside region. 
+
+
+EC2- elastic compute cloud - among vast varity of services provided by AWS, Ec2 is core computing conponent which provides secure resizable compute capacity and we can easily scale up and scale down based on demand, and we need to pay only for wgar we use
+
+Steps:
+1. create AWS account
+2. login with aws account, create EC2 instance
+3. choose AMI - Amazon machine image - it contains info about OS and software related details. 2 types - predefined, custom. 
+4. Choose instance type - hardware specifications. 
+
+While creating Ec2 instance - instance type: 
+General purpose: It provides the balance of memory, network, computing resorces. It makes use of these resources in equal proportions,
+
+Examples of general purpose instances are T2, T3, T4g, M4, M5, M6g, M7g, etc
+
+Compute optimized: which requires lots of compute power/ proccessing power. 
+
+memory optimized: It is designed for processing large data sets in memory. R series, x series
+ there are some app which works well with in memory cache. 
+in-memory cache - when we want to re read r re access the data which is stored in cache memory we can have this memory optimised instance type. 
+
+GPU optimized - grafical process unit - for setting some large gaming system or wityh a large graphical requirement. 
+
+storage optimized:
+
+Diff types of instances based on purchase option:
+-------------------------------------------------
+On Spot instances - instances which are not in use, which we can make use of with low cost.
+
+On demand Instance - compared to others, its costly. but we can make use of resources at any time it will not effect our work. Pay as we use. 
+
+Reserved Instance - we can specify instance type, availability zone, region. its reserved for our work. 
+
+Choosing storage: 
+1. Ephemeral storage - temporory and free
+2. Elastic block store - permanent and paid
+3. Amazon s3
+
+Security group - we can specify incoming traffic. outgoing traffic is open. we can specify 
+
+
+Services:
+
+AWS Elastic Beanstalk - Its a pre configured EC2 server that can directly takeup ur application code and env configurations. It automatically handles the deplyoment details - capacity provisioning, load balancing, 	Auto scalling, application health monitoring. 
+
+cloudFront - Content delivery Network. which helps to speed up the destribution of static or dynamic data to the users. it keeps the content on edge locations so users can easily retrive.
+
+AWS COgnito - To create users for our web apps r mobile apps. We should not create IAM users for accesing our applications. IAM users only for accessing AWS.
+
+
+Cloud watch
+
+
+
+sESSION-
+260+ services
+
+compute - 
+Processing - cpu, memory, workload
+
+EC2, autoscalling, Elastic load balancing, Elastic container service, AWS lamda
+
+Use cases:
+1. High performance
+2. Big data
+
+
+
+-------------
+Compute:
+Serverless: No need to worry about server infrastructure. 
+exp: Lamda
+Code is combined with - dependencies, librery, config details, run time. so we will be paying only for run time. 
+
+we can run code without concerning about server infrastructure. To run the code we can use other existing aws services. 
+we will be paying only for run time - compute - should not exceed 15 min 
+
+Storage:
+1. Block - data will be stored in the form of raw data blocks. and dedicated to that specific instance.
+EBS - heigh performance block storage - bcs data stored in raw format in bulk.
+
+	4 diff types of storage in EBS 
+	1. General purpose SSD - when we dont have any specific type requirement, we can choose general purpose storage.
+	2. Provisioned IOPS SSD - When system works for more ip/op
+	3. Throughput Optimized HDD - high throughput
+	4. Clod HDD - less frequently accessed data
+
+Its not flexible - We cant share volums
+
+2. File - EFS - Data will be stored in the file structure.
+Shared file storage - cost effective. 
+
+3. Object - Data will be stored in the form of objects. - Simple storage service - s3.
+We can store any type of data. 
+Stores files in buckets.
+By default versioning is desabled, we can enable, so that we can keep track of varients of objects. 
+prevent Accidental delete - it asks for confirmation
+To give more protection to s3- bucket policy
+
+Database-
+RDS - High availability - multi availability zone deplyoment
+To read heavy workloads - use read replica
+Fully structured database, we only need to think about optimization in querying.
+
+Active active DR - both systems will be active, if any 1 system goes down, other system will take over. only thing we need somebody to redirect the request. 
+service which redirect the request - load balancer
+
+DynamoDB - No SQL db.
+Key value pair
+document db.
+No Servers to manage.
+
+Backup and restore is automatically taken care so no need to worry about this.
+
+We can create Global table - which can work across diff regions/locations. 
+
+Serverless web applications
+Mobile Backends
+Gaming
+Internet Of Things
+
+in above cases we can use Dynamo db. bcs it works with key value pair.
+
+Route53:
+Translates Domain names to numeric IP address
+Route traffics to healthy end points
+
+
+AWS Direct connect: when we hv data on both on primise and cloud we can connect both through Direct connect. 
+Is a dedicated network connection from ur premise to AWS.
+Security is not compromised anywhere bcs we will be having direct connect and also bandwidth also will be more. 
+
+Amazon cloudFront - Queckly delivers content to customers globally. We need to pay only for data being cache. 
+
+CDN - content delivery network. cloudFront is part of CDN.
+
+-------------
+Command line interface-
+after configuring aws in linux - curl command copied from official document, unzip, sudo ./install
+
+after that, in command line - aws configure - enter access key details, 
+aws iam list-users
+
+
+--------------------
+Amazon FSx for windows - communicates through SMB protocall. 
+Amazon FSx for lustre - Fully managed high performance scalable storage
+linux and cluster. 
+
+Ec2 instance store - When we need high performance hardware disk we can use this.
+risk of data loss. 
+
+Scalability - Ability to accomodate lorger load by making hardware stronger (scaleup) or by adding more nodes(scaledown)
+
+Elasticity - Ability to perform scalability by 'autoscale' concept - so it will auto scaleup or scaledown based on requirement. 
+
+Machine learning ---
+
+Recognition - face recognition, labeling, celebrity recognition
+Poly - Text to audio
+Transcribe - Audio to Text - subtitles
+Translates - Translations
+Amazon Lex - Same as alexa - chatbox - conversational box
+Amazon connect - cloud contact center
+Comprehend - Natural Language processing
+SageMaker - build Machine learning models - predector
+Forecast - predect the feature of data - example sales
+Kendra - Document search service - we can extract answers from document
+Textract - text extracter- scan and extract texts - example info from driving licence
+Personalize- to create personalized user experience
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
