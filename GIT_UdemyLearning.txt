@@ -1,0 +1,135 @@
+GIT
+
+Version controling tool
+
+Branch - 
+Timeline with the commit
+Default and main branch - Master 
+
+commit
+Save changes
+
+Head 
+Pointer to last commit on branch
+
+Remote
+Related repository, not local
+Github, Gitlab, etc
+
+
+Working_directory	Local_Staging area	Git_Repository	Remote_GitHub
+								push
+init			add			commit		---->
+		
+pull<----------------------------------------------------------------------
+
+
+
+
+Initial configuration after installing:
+
+Git config --global user.name ""
+git config --global user.email ""
+
+git config --global --list
+
+
+Thse details will get updated in gitconfig file -
+
+cat ~/.gitconfig
+
+git init  -> to start with new project
+
+It will create new folder with some hidden files - we can list using ls -a
+
+
+Working area
+staging area
+Git Repository local
+Remote repository
+
+After making any changes in file, we need to use add command to move to staging area.
+then commit to move to local repository. 
+
+git status
+git add filename
+git commit -m "coment"
+
+git commit -am "coment2"
+---------------------------------
+
+git config --global user.name ""
+git config --global user.email ""
+
+git config --global --list  -> To list all the details of config file
+
+--------------------------------
+git status - to check current status or changes we worked on..
+It will give some idea about files we updated in which stage - working area / staging area/ local repository
+If it is just updated in working area- we need to move to staging area if we are sure about changes - git add filename
+even after moving file to staging area, we can revert back the changes -
+ 
+git restore --staged filename
+git restore filename
+
+so it will make changes to files, and revert back the changes made..
+
+
+git log  - will display all details about commited details in log
+
+If we want only first line -- oneline option
+
+git log --oneline
+
+git log --oneline --graph --decorate=long  -> heighlighted points with ref details we can specify long r short
+
+to remove files:
+
+git rm filename
+
+or
+
+rm filename
+
+both are tracked.. we need to use add to move to staging area.
+
+To ignore files 
+vi .gitignore  - we can mention what files to be ignored 
+
+we can connect to remote repository - using 
+
+git remote add origin git@github.com/username/repository.git
+
+if we have https in above line, it will ask for username and password, so we need to set up as git@.. to do that:
+
+git remote set-url origin git@github.com:usernme/repo.git
+
+before this we need to generate public key and we need to attach that in git.. 
+
+git push origin <branch name>
+
+
+
+_____________________________________________________________________________________
+
+After installing Docker in linux - to check status - docker status or docker info..
+
+we may get error for server side details.. we need to use sudo everytime to access details.. to avoid that we can add user to group..
+
+sudo usermod -ag docker username
+
+need to open new terminal get it effected.
+
+Jenkins:
+
+Popular opensource CI CD tool. Which helps in automating code, commit, build, test and  deploy continuasly. Once it finds new commit it will automate all the tasks related to  build test and deply.
+
+CI - Changes made to software are integrated continuasly so the code will be ever ready to deploy.
+
+CD - 
+
+CD - Continuas intigrated code is deplyed continuasly to the target env
+
+Poll SCM - automated build - we can schedule like cron job
+
+

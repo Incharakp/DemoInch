@@ -1,0 +1,71 @@
+Explicit DENY in an IAM Policy will take precedence over an S3 bucket policy.
+S3 Replication allows you to replicate data from an S3 bucket to another in the same/different AWS Region.
+
+AMI - Template used while creating EC2 instance - specifies OS 
+Helps when we want to create multiple instances with th same configurations, we can use AMI.
+
+User data - when we want to execute bootstrap - we can mention it in user data tab while creating instance.
+
+Access key, secret access key - helps to provide programatic access from command line interface.
+
+Security group - while creating EC2 instance - we can mention inbound and outbound rules to allow r denay traffic. 
+
+EC2 - provides on demand, scalable computing capacity in aws cloud. using Ec2 reduses hardware cost. allow users to rent virtual comp on which to run their own comp applications.
+
+
+EBS - it is a network drive attached ur instance - data persist even after their termination.
+
+Practitioner level - EBS can be mounted to only one instance. 
+Associate level - it can be attached to multiple instances for some EBS - provisioned IOPS type. 
+
+- bound to specific availability zone.
+
+- It is a network drive, its not a physical drive. so communication will happen through network so there meight me a bit of latency.
+
+- It can be detached from an Ec2 instance and can be attached to other one quickly.
+
+- It is locked to specific availability zone. to move to diff AZ we can create snapshot.
+
+After creating snapshot, we can attach it to other instance in diff availability zone.
+
+To copy content of 1 instance to other, we can create image of base instance, we can find that image under AMI, we can find this under our own AMI's. so no need to setup again if we want to have same config.
+
+Elastic Block Store - Types
+Throughput Optimized HDD - 5000 IOPS
+General purpose SSD - upto 16000 IOPS
+Provisioned IOPS SSD - upto 64000 IOPS
+
+EFS - Heighly available, scalable. pay for what we use. managed NFS - network file system. 
+
+Ports:
+
+22 - SSH - login to linux instance, secure file transfer
+21 - ftp
+80 - http
+443 - https
+3389 - RDP
+
+
+To list s3 buckets in command prompt:
+aws s3 ls
+
+To copy contents of s3 buckets
+aws s3 sync s3://DOC-EXAMPLE-BUCKET-SOURCE s3://DOC-EXAMPLE-BUCKET-TARGET
+
+Placement group
+---------------------
+1. Cluster - place instances in single availability zone - when we need high performance 
+2. Spread - 7 instances per availability zone. spread across hardware.when we hv critical application
+3. Partition - place 100 of ec2 instances
+
+1. less availability
+2. minimise the failure risk
+3. we can have 7 partition per AZ, do not share hardware in partition. isolated from each other.
+
+
+
+
+DR types
+Pilot light 
+backup restore
+warm backup
